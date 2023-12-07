@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Big Time Shop - Tu destino para la electrónica de vanguardia!</title>
+    <meta name="description"
+        content="Big Time Shop es una plataforma líder en comercio electrónico especializada en la venta de productos de electrónica y tecnología de última generación. Descubre una amplia selección de gadgets, dispositivos móviles y accesorios tecnológicos de alta calidad. Nuestro objetivo es ofrecer a nuestros clientes una experiencia de compra excepcional, brindándoles productos innovadores y garantizando la máxima satisfacción. ¡Explora nuestro catálogo y sumérgete en el mundo de la tecnología de punta!" />
+    <meta name="keywords"
+        content=" Big Time Shop, electrónica, tecnología, gadgets, dispositivos móviles, accesorios tecnológicos, comercio electrónico, calidad, innovación, experiencia de compra." />
+
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/quill.css">
+    <link rel="stylesheet" href="/static/css/productadmin.css">
+    <script src="/static/js/quill.js"></script>
+    <script src="/static/js/jquery.js"></script>
+</head>
+
+<body>
+    <!-- header -start -->
+    
+    <header>
+        <div class="w shortcut">
+            <div class="fl">Bienvenido a Big Time Shop!</div>
+            <div class="fr">
+                <ul>
+                    <li><a href="#">Enviar a <b>3000</b></a></li>
+                    <li><a href="#">Mi carrito</a></li>
+                    <li><a href="index.html">Oferta</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </header>
+    <!-- header end -->
+
+
+ 
+    <div class="w">
+        <div class="logo-content">
+            <div class="logo">
+                <h1>Big Time</h1>
+                <a href="index.html"><img src="/static/images/logo.png" alt=""></a>
+            </div>    
+        </div>
+        <br>
+        <!-- section start -->
+    <section>
+        <div class="header">
+            <h1>Administrar Productos</h1>
+        </div>
+        <div class="edict-area">
+
+            <form class="area-details">
+                <h4>Detalles</h4>
+                <div class="goodPhoto">
+                    <div class="originalPhoto">
+                        <img src="/static/images/product/prodcut-4.jpg" alt="">
+                    </div>
+                    <div class="changePhoto">
+                        <img src="/static/images/upload.png" alt="">
+                        <span>El tamaño de la imagen debe ser menor a 5Mb</span>
+                        <input type="file" id="NewPhoto" class="hidden">
+                        <label for="NewPhoto" class="uploadBtn">Subir la imagen</label>
+                    </div>
+                    
+                </div>
+                <div class="mb-5">
+                    <p>Titulo del producto <span>*</span></p>
+                    <input type="text"><br>
+                </div>
+                <div class="mb-5">
+                    <p>Precio <span>*</span></p>
+                    <input type="text"><br>
+                </div>
+                <div class="mb-5">
+                    <p>Fecha de Lanzamiento <span>*</span></p>
+                    <input type="date"><br>
+                </div>
+                <div class="mb-5">
+                    <p>Descripcion</p>
+                    <div id="editor">
+                    </div>
+                    <script>
+                        var quill = new Quill('#editor', {
+                            theme: 'snow'
+                        });
+
+                    </script>
+                </div>
+                
+                <div class="mb-5">
+                    <p>Stock <span>*</span></p>
+                    <input type="text"><br>
+                </div>
+                <div class="mb-5">
+                    <input type="submit" id="save" value="Guardar">
+                </div>
+            </form>
+            <div class="area-showGoods">
+                <div class="data-content">
+                    <div class="content-hd">
+                        <div class="search-bar">
+                            <button class="search-btn"></button>
+                            <input type="text" id="search" placeholder="Ingresa lo que buscas...">
+                        </div>
+                        <div class="search-options">
+                            <span>Ordenar por:</span>
+                            <select name="" id="">
+                                <option>Mas reciente</option>
+                                <option>Al principio</option>
+                                <option>Al ultimo</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--  product-list content -->
+                    <div class="content-bd">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td class="th-1"><input type="checkbox" class="cbAll"></td>
+                                    <td class="th-2">Articulo</td>
+                                    <td class="th-3">Precio</td>
+                                    <td class="th-4">Stock</td>
+                                    <td class="th-5">Fecha de Lanzamiento</td>
+                                    <td class="th-6">Accion</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {%for product in products%}
+                                <tr>
+                                    <td><input type="checkbox" class="cb"></td>
+                                    <td>
+                                        <div class="product-icon">
+                                            <img src="/static/upload/celulares/celular (1).png" alt="">
+                                            <p>{{product.pname}}</p>
+                                        </div>
+                                    </td>
+                                    <td><span class="price">${{product.pprice}}</span></td>
+                                    <td><span class="stock">{{product.pstock}}</span></td>
+                                    <td><span class="datePublish">{{product.pdate}}</span></td>
+                                    <td>
+                                       <a href="editproduct.html" class="editBtn"></a>
+                                        <a href="#" class="delBtn"></a>
+                                    </td>
+                                </tr>
+                                {%endfor%}
+                                
+                                
+                            </tbody>
+                        </table>
+
+                        <div class="tab-footer">
+                            <div class="showpage">
+                                <p>Showing 1 of 120</p>
+                            </div>
+                            <ul class="currentpage">
+                                <li><a href="#">&lt;</a></li>
+                                <li><a href="#">&gt;</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>   
+            </div>
+        </div>
+    </section>
+    <!-- section end -->
+        
+        
+    </div>
+
+    
+    
+
+
+
+
+
+
+    <!-- footer start -->
+    <!-- <footer>
+        <div class="footer w">
+            <div class="copyright">
+                <p>© 2023 All rights reserved. Grupo Cac. Trabajo en Grupo</p>
+            </div>
+        </div>
+    </footer> -->
+    <!-- footer end -->
+</body>
+
+</html>
